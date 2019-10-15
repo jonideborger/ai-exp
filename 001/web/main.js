@@ -14,13 +14,14 @@ function init() {
 }
 
 async function loadModel() {
-    //model = await tf.loadModel('./model/model.json');
+    model = await tf.loadLayersModel('./model/model.json');
+    console.log('Model', model);
 }
 
-function predict(tfImage) {
+async function predict(tfImage) {
     console.log('Trying to predict')
     if(model) {
-        //const prediction = model.predict(...)
+        const prediction = model.predict(tfImage).data();
         //argMax
         console.log('Prediction', prediction);
     }
@@ -89,7 +90,7 @@ function recogniseNumber() {
 
     // console.log(ctx.getImageData(0,0, 100, 100));
     var imageData = ctx.getImageData(0, 0, 100, 100);
-    var tfImage = tf.fromPixels(imageData, 1);
+    var tfImage = tf.browser.fromPixels(imageData, 1);
 
     //Resize to 28X28
     var tfResizedImage = tf.image.resizeBilinear(tfImage, [28,28]);

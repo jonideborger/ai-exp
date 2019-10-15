@@ -21,20 +21,23 @@ test_images = test_images.reshape((-1, 784))
 model = Sequential([
   Dense(64, activation='relu', input_shape=(784,)),
   Dense(64, activation='relu'),
-  Dense(10, activation='softmax'),
+  Dense(10, activation='softmax')
 ])
 
 # Compile the model.
 model.compile(
   optimizer='adam',
   loss='categorical_crossentropy',
-  metrics=['accuracy'],
+  metrics=['accuracy']
 )
 
 # Train the model.
 model.fit(
   train_images,
   to_categorical(train_labels),
-  epochs=5,
+  epochs=100,
   batch_size=32,
 )
+
+model.save("model.h5")
+#tfjs.converters.save_keras_model(model, '/')
