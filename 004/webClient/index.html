@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - FBX loader - Nurbs</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#info {
+				color: #fff;
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+			}
+			#info a {
+				color: #00f;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="info">
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+		<script>
+			//COMMUNICATION SHIT
+			let socket = io('socketUrl:port');
+			socket.on('connect', function(){});
+			socket.on('event', (data) => {
+				console.log('random event', data);
+			});
+			socket.on('disconnect', (e) => {
+				console.log('DISCONNECTED', e);
+				//io.socket.reconnect();
+			});
+
+/* 			socket.on(`/conversation/A/playSentence`, (sentenceObj) =>{
+				console.log('received sentence');
+				console.log(sentenceObj);
+				console.log();
+				var audio = document.createElement('audio');
+				audio.src = sentenceObj.audio;
+				audio.style.display = "none"; //added to fix ios issue
+				audio.autoplay = true; //avoid the user has not interacted with your page issue
+				audio.onended = function(){
+					console.log('PLAYER ENDED');
+				};
+				document.body.appendChild(audio);
+			}); */
+
+
+
+		</script>
+
+	</body>
+</html>
